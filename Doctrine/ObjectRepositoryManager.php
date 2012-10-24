@@ -1,19 +1,18 @@
 <?php
 
-namespace Funddy\Component\Persistence\Doctrine\ODM;
+namespace Funddy\Component\Persistence\Doctrine;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * @copyright (C) Funddy (2012)
- * @author Guillermo Pascual <akira.space@gmail.com>
  * @author Keyvan Akbary <keyvan@funddy.com>
  */
-class ObjectRepositoryManager
+abstract class ObjectRepositoryManager
 {
     private $repositories = array();
-    private $om;
-    private $objectRepository;
+    protected $om;
+    protected $objectRepository;
 
     public function __construct(ObjectManager $om, $objectRepository)
     {
@@ -33,13 +32,12 @@ class ObjectRepositoryManager
 
     private function createCustomRepositoryForClass($className)
     {
-        $metadata = $this->om->getClassMetadata($className);
-
-        $documentRepository = new $this->objectRepository($this->om, $this->om->getUnitOfWork(), $metadata);
-        $repository = new $metadata->customRepositoryClassName($documentRepository);
+        $repository = $this->createRepository($className);
 
         $this->repositories[$className] = $repository;
 
         return $repository;
     }
+
+    abstract protected function createRepository($className);
 }
