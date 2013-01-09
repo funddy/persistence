@@ -9,18 +9,24 @@
         {
             "name": "Keyvan Akbary",
             "email": "keyvan@funddy.com",
-            "homepage": "http://keyvanakbary.com/"
+            "homepage": "http://twitter.com/keyvanakbary/"
         },
         {
             "name": "Guillermo Pascual",
-            "email": "akira.space@funddy.com",
+            "email": "pasku@funddy.com",
             "homepage": "http://twitter.com/pasku1/"
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
         "doctrine/common": ">=2.2.0,<2.5-dev",
         "doctrine/mongodb": ">=1.0.0-beta1,<1.1-dev"
+    },
+    "suggest": {
+        "doctrine/common": "Required if you are going to use Doctrine ORM",
+        "doctrine/mongodb": "Required if you are going to use Doctrine Mongo ODM"
     },
     "autoload": {
         "psr-0": { "Funddy\\Component\\Persistence": "" }
